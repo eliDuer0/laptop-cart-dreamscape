@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useCart } from '@/contexts/CartContext';
 import { Button } from "@/components/ui/button";
@@ -13,10 +12,8 @@ const CheckoutPage: React.FC = () => {
     return acc + (item.product.price * item.quantity);
   }, 0);
   
-  // Placeholder for shipping and tax calculations
-  const shipping = 15;
-  const tax = subtotal * 0.1;
-  const total = subtotal + shipping + tax;
+  // Removed shipping and tax calculations
+  const total = subtotal;
   
   if (cartItems.length === 0) {
     return (
@@ -90,14 +87,6 @@ const CheckoutPage: React.FC = () => {
                 <span>Subtotal</span>
                 <span className="font-medium">${subtotal.toLocaleString()}</span>
               </div>
-              <div className="flex justify-between">
-                <span>Shipping</span>
-                <span className="font-medium">${shipping.toLocaleString()}</span>
-              </div>
-              <div className="flex justify-between">
-                <span>Tax</span>
-                <span className="font-medium">${tax.toLocaleString()}</span>
-              </div>
               <div className="flex justify-between text-lg font-bold pt-2 border-t">
                 <span>Total</span>
                 <span>${total.toLocaleString()}</span>
@@ -106,7 +95,7 @@ const CheckoutPage: React.FC = () => {
             
             <Button 
               className="w-full mt-6 bg-brand-blue hover:bg-opacity-90 h-12"
-              onClick={() => alert('This is a demo checkout. No actual purchase will be made.')}
+              onClick={() => alert('Thank you for your purchase!')}
             >
               Complete Order
             </Button>
