@@ -1,12 +1,25 @@
 
 import { createClient } from '@supabase/supabase-js';
+import { supabase as configuredSupabase } from '@/integrations/supabase/client';
 
-// These values should be stored in environment variables in a production app
-// For this demo, we'll just use them directly
-const supabaseUrl = 'YOUR_SUPABASE_URL';
-const supabaseKey = 'YOUR_SUPABASE_ANON_KEY';
+// Use the properly configured Supabase client from the integration
+export const supabase = configuredSupabase;
 
-export const supabase = createClient(supabaseUrl, supabaseKey);
+// Define the Product interface to fix type errors
+export interface Product {
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+  stock: number;
+  imageUrl: string;
+  specs: {
+    processor: string;
+    ram: string;
+    storage: string;
+    display: string;
+  };
+}
 
 export const getProducts = async () => {
   const { data, error } = await supabase
