@@ -41,10 +41,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
             console.error('Error fetching user data:', error);
             setUser(null);
           } else {
+            // Ensure the role is correctly typed
+            const userRole = (userData?.role === 'admin') ? 'admin' : 'user';
             setUser({
               id: session.user.id,
               email: session.user.email || '',
-              role: userData?.role || 'user',
+              role: userRole,
             });
           }
         } else {
@@ -72,10 +74,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
           console.error('Error fetching user data:', error);
           setUser(null);
         } else {
+          // Ensure the role is correctly typed
+          const userRole = (userData?.role === 'admin') ? 'admin' : 'user';
           setUser({
             id: session.user.id,
             email: session.user.email || '',
-            role: userData?.role || 'user',
+            role: userRole,
           });
         }
       } else if (event === 'SIGNED_OUT') {
